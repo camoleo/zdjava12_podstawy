@@ -13,7 +13,7 @@ public class Zad2 {
         if (decimalNumber <= 0) {
             System.out.println("Entered decimalNumber not positive. Try again.");
         } else
-            System.out.println("Convert to binary is: ");
+            System.out.println("Conversion to binary is: ");
 
         printBinary(decimalNumber);
 
@@ -23,12 +23,12 @@ public class Zad2 {
         int remainder;                              //zmienna przechowuje reszte z dzielenia
 
         if (decimalNumber <= 1) {
-            System.out.println(decimalNumber);
+            System.out.print(decimalNumber);
             return;
         }
         remainder = decimalNumber % 2;
         printBinary(decimalNumber >> 1);
-        System.out.println(remainder);
+        System.out.print(remainder);
     }
 
 

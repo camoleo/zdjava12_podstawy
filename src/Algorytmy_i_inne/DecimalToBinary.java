@@ -23,7 +23,6 @@ public class DecimalToBinary {
         }
     }
 }
-// nie działa debugger tutaj - pojawia się bład - dlaczego?
 
 //todo zrob petle while(x !=0, ktora dzieli x przez 2, i przypisuje wynik to x
 //todo reszta z dzielenia ma byc "przyklejona" do zmiennej result

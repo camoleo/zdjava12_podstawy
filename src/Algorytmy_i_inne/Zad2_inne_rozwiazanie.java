@@ -25,4 +25,4 @@ public class Zad2_inne_rozwiazanie {
             System.out.print(""+ binary[j]);
         }
     }
-}
+} //komentarz

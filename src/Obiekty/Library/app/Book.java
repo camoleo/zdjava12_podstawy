@@ -5,6 +5,7 @@ public class Book {
     private int bookID;
     private String title;
     private String author;
+
     //todo w przyszlosci dodac reader
     //todo w przyszlosci dodac returnDate
 
@@ -13,14 +14,22 @@ public class Book {
 
     private static int idCounter = 0;
 
+    public static int getIdCounter() {
+        return idCounter;
+    }
+
+    public Book() {
+        bookID = 0;
+        title = null;
+        author = null;
+    }
+
     public Book(String title, String author) {
-
-        this.title = title;
-        this.author = author;
-
         this.bookID = idCounter;
         idCounter++;
 
+        this.title = title;
+        this.author = author;
     }
 
     public int getBookID() {
@@ -31,20 +40,23 @@ public class Book {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getAuthor() {
         return author;
     }
 
-//    public String toString() {
-//        return "Book{" +
-//                "title='" + title + '\'' +
-//                ", author='" + author + '\'' +
-//                ", bookId=" + bookId +
-//                '}';
-//    }
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    @Override
+   public String toString() {
+        return "\nTitle: " + title + "\nAuthor: " + author + "\nBookID: " + bookID + "\n";
+    }
 }
-
-
 
 
 //* modyfikatory dostępu pól i metod: private, public, (protected), <<domyślny jest dostęp pakietowy>>>

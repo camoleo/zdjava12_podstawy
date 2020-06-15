@@ -11,6 +11,10 @@ package Obiekty.Library.app;
 
 //        * Bibliotekarz może wyświetlić wypożyczenia i rezerwacje czytelnika
 //        * Bibliotekarz może oznaczyć, że książka została oddana przez czytelnika
+
+import java.util.Scanner;
+
+
 public class Library {
 
     private Book[] books;
@@ -20,46 +24,103 @@ public class Library {
 
     public Library() {
         this.books = new Book[MAX_BOOKS_COUNT];
+        this.firstEmptyIndex = 0;
     }
 
+
+    public void printBooks() {
+        for (Book book : books) {
+            if (book == null) {
+
+            } else {
+                System.out.println(book);
+            }
+        }
+    }
+
+
     public void addBook(Book book) {
+        //ID
         this.books[firstEmptyIndex] = book;
         firstEmptyIndex++;
     }
 
-    public void printBooks(){
-        for(int i = 0;i < books.length;i++){
-            if(books[i] != null){
-                System.out.println(books[i]);
-            }
-        }
+    public void addBook() {
+        //author
+        Book newBook = new Book();
+        System.out.println("Enter the author name: ");
+        Scanner authorInput = new Scanner(System.in);
+        String author = authorInput.nextLine();
+        newBook.setAuthor(author);
+        //title
+        System.out.println("Enter the book title: ");
+        Scanner titleInput = new Scanner(System.in);
+        String title = titleInput.nextLine();
+        newBook.setTitle(title);
     }
-    public Book[] searchBook(String searchQuery) {
-        Book[] searchResult = new Book[MAX_BOOKS_COUNT];
-        int foundBooksCount = 0;
 
-        for (int i = 0; i < this.firstEmptyIndex; i++) {
-            Book bookToCheck = this.books[i];
 
-            boolean authorCheck = bookToCheck.getAuthor().contains(searchQuery);               //contains - czy zawiera dany fragment
-            boolean titleCheck = bookToCheck.getTitle().contains(searchQuery);
+    public void removeBook() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter bookID to remove: ");
+        int bookID = scanner.nextInt();
 
-            if (authorCheck || titleCheck) {
-                searchResult[i] = bookToCheck;
-                foundBooksCount++;
-            }
-
-        }
-        int actualIndex = 0;
-        Book[] searchResultToReturn = new Book[foundBooksCount];
-        for (int i = 0; i < searchResult.length; i++) {
-            if (searchResult[i] != null) {
-                searchResultToReturn[actualIndex] = searchResult[i];
-                actualIndex++;
+        for (int i = 0; i < books.length; i++) {
+            if (bookID == i) {
+                books[i] = null;
             }
         }
 
-        return searchResult;
+    }
+
+    public void searchByAuthorName() {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter author's name:");
+        String authorName = scanner.nextLine();
+        int idCounter=0;
+        int s = 0;
+        for (int i = 0; i < idCounter; i++) {
+
+            if (authorName.equalsIgnoreCase(books[i].getAuthor())) {
+
+                System.out.println(books[i].getAuthor());
+                s++;
+            }
+
+        }
+        if (s == 0)
+            System.out.println("No Books of " + authorName + " found.");
+
     }
 }
+//   public Book[] searchBook(String searchQuery) {
+
+//        Book[] searchResult = new Book[MAX_BOOKS_COUNT];
+//        int foundBooksCount = 0;
+//
+//        for (int i = 0; i < this.firstEmptyIndex; i++) {
+//            Book bookToCheck = this.books[i];
+//
+//            boolean authorCheck = bookToCheck.getAuthor().contains(searchQuery);  //contains - czy zawiera dany fragment
+//            boolean titleCheck = bookToCheck.getTitle().contains(searchQuery);
+//
+//            if (authorCheck || titleCheck) {
+//                searchResult[i] = bookToCheck;
+//                foundBooksCount++;
+//            }
+//
+//        }
+//        int actualIndex = 0;
+//        Book[] searchResultToReturn = new Book[foundBooksCount];
+//        for (Book book : searchResult) {
+//            if (book != null) {
+//                searchResultToReturn[actualIndex] = book;
+//                actualIndex++;
+//            }
+//        }
+//
+//        return searchResultToReturn;
+//    }
+
 

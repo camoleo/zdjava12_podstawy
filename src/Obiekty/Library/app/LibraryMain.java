@@ -16,6 +16,19 @@ public class LibraryMain {
         library.addBook(book2);
         library.addBook(book3);
 
+        Reader reader = new Reader();
+
+        Reader reader1 = new Reader("Kamila Graczyk");
+        Reader reader2 = new Reader("Zofia Oczytana");
+        Reader reader3 = new Reader("Czarek Cotobook");
+
+
+        library.addReader(reader1);
+        library.addReader(reader2);
+        library.addReader(reader3);
+
+
+
         while (true) {                      //dlaczego takie wywołanie metody? jest inny sposób?
             showMenu(library);
         }
@@ -36,7 +49,7 @@ public class LibraryMain {
 
         System.out.println("--- Library Menu ---");
         System.out.println("---(1) View a book list ---");
-        System.out.println("---(2) Add a book ---");
+        System.out.println("---(2) Add a new book ---");
         System.out.println("---(3) Remove a book ---");
         System.out.println("---(4) Search a book ---");
         System.out.println("---(5) Loan a book ---");
@@ -44,7 +57,8 @@ public class LibraryMain {
         System.out.println("---(7) Return a book ---");
         System.out.println("---(8) Register a new reader ---");
         System.out.println("---(9) View reader's loans and reservations ---");
-        System.out.println("---(10) EXIT ---");
+        System.out.println("---(10) View readers list ---");
+        System.out.println("---(11) EXIT ---");
 
         System.out.println("Enter your choice: ");
         int choice = scanner.nextInt();
@@ -56,6 +70,7 @@ public class LibraryMain {
             break;
             case 2: {
                 library.addBook();
+                library.printBooks();
             }
             break;
             case 3: {
@@ -63,7 +78,17 @@ public class LibraryMain {
             }
             break;
             case 4: {
-                library.searchByAuthorName();
+             //   library.findByTitle();
+            }
+            break;
+            case 8: {
+                library.addReader();
+                library.printReaders();
+            }
+            break;
+            case 10: {
+                library.printReaders();
+
             }
         }
     }

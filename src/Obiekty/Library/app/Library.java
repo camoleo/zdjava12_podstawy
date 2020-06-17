@@ -18,16 +18,23 @@ import java.util.Scanner;
 public class Library {
 
     private Book[] books;
-    private int firstEmptyIndex;
+    private Reader[] readers;
+    private int firstEmptyBookIndex;
+    private int firstEmptyReaderIndex;
+
     //konstruktor - pusta tablica, do ktorej bedziemy wrzucac te ksiazki
+
     private static final int MAX_BOOKS_COUNT = 100;
+    private static final int MAX_READERS_COUNT = 100;
 
     public Library() {
         this.books = new Book[MAX_BOOKS_COUNT];
-        this.firstEmptyIndex = 0;
+        this.firstEmptyBookIndex = 0;
+        this.readers = new Reader[MAX_READERS_COUNT];
+        this.firstEmptyReaderIndex = 0;
     }
 
-
+    //View a book list
     public void printBooks() {
         for (Book book : books) {
             if (book == null) {
@@ -38,11 +45,11 @@ public class Library {
         }
     }
 
-
+    //Add a new book
     public void addBook(Book book) {
-        //ID
-        this.books[firstEmptyIndex] = book;
-        firstEmptyIndex++;
+        //Book ID
+        this.books[firstEmptyBookIndex] = book;
+        firstEmptyBookIndex++;
     }
 
     public void addBook() {
@@ -59,7 +66,42 @@ public class Library {
         newBook.setTitle(title);
     }
 
+    //View readers list
+    public void printReaders() {
+        System.out.println("Reader Name\t\tReaderID");
+        for (int i=0; i<firstEmptyReaderIndex; i++){
 
+            System.out.println(readers[i].getReaderName() + "\t\t\t\t\t\t\t" + readers[i].getReaderId());
+
+        }
+
+//        for (Reader reader : readers) {
+//            if (reader == null) {
+//
+//            } else {
+//                System.out.println(reader);
+//            }
+//        }
+    }
+
+    //Register a new reader
+    public void addReader(Reader reader) {
+        //Reader ID
+        this.readers[firstEmptyReaderIndex] = reader;
+        firstEmptyReaderIndex++;
+    }
+
+
+    public void addReader() {
+        Reader newReader = new Reader();
+        System.out.println("Enter the reader name: ");
+        Scanner readerScanner = new Scanner(System.in);
+        String reader = readerScanner.nextLine();
+        newReader.setReaderName(reader);
+
+    }
+
+//Remove a book
     public void removeBook() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter bookID to remove: ");
@@ -72,34 +114,70 @@ public class Library {
         }
 
     }
+//Search a book by title
+//    public void findByTitle(String title) {
+//        Book book = findByTitle(title);
+//        if (book != null) {
+//            // Print the book info
+//        } else {
+//            System.out.println("No Book for Serial No " + sNo + " Found.");
+//        }
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("What book are you searching?: ");
+//        String bookName = scanner.nextLine();
+//        int counter = 0;
+//        for (int i = 0; i < counter; i++) {
+//
+//            if (bookName.equalsIgnoreCase(books[i].getTitle())) {
+//
+//                System.out.println(books[i].getAuthor());
+//                i++;
+//            } else {
+//                System.out.println("No books found");
+//            }
 
-    public void searchByAuthorName() {
+//            if (books[i].getTitle().equalsIgnoreCase(bookName)) {
+//                return;
+//            }
+//        }
+//        if (counter == 0)
+//            System.out.println("No Books of " + bookName + " found.");
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter author's name:");
-        String authorName = scanner.nextLine();
-        int idCounter=0;
-        int s = 0;
-        for (int i = 0; i < idCounter; i++) {
 
-            if (authorName.equalsIgnoreCase(books[i].getAuthor())) {
-
-                System.out.println(books[i].getAuthor());
-                s++;
-            }
-
-        }
-        if (s == 0)
-            System.out.println("No Books of " + authorName + " found.");
+    //Loan a book
+    public void loanABook(){
 
     }
 }
+
+//        for (Book book : ) {
+//
+//            if (authorName.equalsIgnoreCase(books[i].getAuthor())) {
+//
+//                System.out.println(books[i].getAuthor());
+//                s++;
+//            }
+//
+//        }
+//
+//
+//    }
+
+// {
+//         if (book.getTitle().contains(booksearch) || book.getAuthor().contains(booksearch)
+//         {
+//         return book;
+//         }
+//         }
+//         return null;
+
+
 //   public Book[] searchBook(String searchQuery) {
 
 //        Book[] searchResult = new Book[MAX_BOOKS_COUNT];
 //        int foundBooksCount = 0;
 //
-//        for (int i = 0; i < this.firstEmptyIndex; i++) {
+//        for (int i = 0; i < this.firstEmptyBookIndex; i++) {
 //            Book bookToCheck = this.books[i];
 //
 //            boolean authorCheck = bookToCheck.getAuthor().contains(searchQuery);  //contains - czy zawiera dany fragment
